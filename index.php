@@ -74,7 +74,7 @@ if(!empty($keyword)) {
     <?php
 } ?>
         <p><br /></p>
-        &copy; 2013 sphinxid
+        &copy; 2013 <a href="https://github.com/sphinxid/lemonMp3">lemonMp3</a> by sphinxid
     </body>
     </html>
 
