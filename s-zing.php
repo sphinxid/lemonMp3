@@ -8,7 +8,7 @@
 
 include_once 'lemonScrapWrapper.php';
 
-$key = 'maroon 5 payhone';
+//$key = 'maroon 5 payhone';
 $key = urlencode($key);
 
 $targetURL = "http://mp3.zing.vn";
