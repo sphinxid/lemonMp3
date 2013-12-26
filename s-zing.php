@@ -56,11 +56,15 @@ $tmpData = lemonScrapMp3Wrapper($newURL, $rules1);
 //print_r($tmpData);
 $n = 0;
 foreach($tmpData[0]['title'] as &$t) {
-    $t = trim(str_replace('  ',' ', $t));
-    $str['title'][$n] = $tmpData[0]['artist'][$n].' - '.$t;
-    $t = trim(str_replace(' ','_', $t));
-    $str['url'][$n] = $tmpData[0]['url'][$n].'/'.urlencode($t).'?z=1';
-    $n++;
+
+    if(strstr($tmpData[0]['url'][$n], 'mp3.zing.vn'))
+    {
+      $t = trim(str_replace('  ',' ', $t));
+      $str['title'][$n] = $tmpData[0]['artist'][$n].' - '.$t;
+      $t = trim(str_replace(' ','_', $t));
+      $str['url'][$n] = $tmpData[0]['url'][$n].'/'.urlencode($t).'?z=1';
+      $n++;
+    }
 }
 $data[] = $str;
 
