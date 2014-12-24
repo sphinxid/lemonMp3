@@ -6,8 +6,9 @@
  * 01/25/2013
  */
 
-@include_once('link.php');
-$source = array('s-dilandau', 's-zing', 's-hulkshare');
+include_once('link.php');
+// $source = array('s-dilandau', 's-zing', 's-hulkshare');
+$source = array('s-hulkshare', 's-tubidy');
 $keyword = '';
 $hasil = '';
 $found = false;
@@ -20,7 +21,7 @@ if(!empty($keyword)) {
 
     foreach($source as &$s) {
         $key = $keyword;
-        @include_once($s.'.php');
+        include_once($s.'.php');
     }
 
         $i = 0;
