@@ -8,7 +8,7 @@
 
 include_once 'lemonScrapWrapper.php';
 
-//$key = 'blink 182';
+// $key = 'blink 182';
 $key = urlencode($key);
 
 $targetURL = "http://www.hulkshare.com";
@@ -52,16 +52,21 @@ $tmpData = lemonScrapMp3Wrapper($newURL, $rules1);
 
 $n = 0;
 foreach($tmpData[0]['title'] as &$t) {
-    $t = trim(str_replace('  ',' ', $t));
-    $str['title'][$n] = $t;
-    $t = trim(str_replace(' ','_', $t));
-    $str['url'][$n] = $tmpData[0]['url'][$n].'/'.urlencode($t).'?z=1';
-    $n++;
+
+    if (!empty($tmpData[0]['url'][$n]))
+    {
+      $t = trim(str_replace('  ',' ', $t));
+      $t2 = str_replace('.mp3', '', $t);
+      $str['title'][$n] = $t2;
+      $t = trim(str_replace(' ','_', $t));
+      $str['url'][$n] = $tmpData[0]['url'][$n].'/'.urlencode($t).'?z=1';
+      $n++;
+    }
 }
 $data[] = $str;
 
 unset($str);
 unset($tmpData);
 
-//print_r($data);
+// print_r($data);
 // ----------------------------------------------------------------------------- //
