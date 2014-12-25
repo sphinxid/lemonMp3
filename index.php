@@ -6,7 +6,9 @@
  * 01/25/2013
  */
 
-include_once('link.php');
+include_once('lib/link.php');
+include_once('lib/playlist.php');
+
 // $source = array('s-dilandau', 's-zing', 's-hulkshare');
 $source = array('s-hulkshare', 's-tubidy');
 $keyword = '';
@@ -24,22 +26,36 @@ if(!empty($keyword)) {
         include_once($s.'.php');
     }
 
+    // will stored result to $data
+
         $i = 0;
         $found = false;
         $total = count($data);
+
+	if (is_array($data) && $total > 0)
+	  shuffle($data);
+
+
         for($i=0;$i<$total;$i++) {
             $x = 0;
             foreach($data[$i]['title'] as $title) {
             $found = true;
 
 	    $str = rawurlencode(encrypt($data[$i]['url'][$x], '1234567890987654321', '!@#$%$#@!QWERTREWQ'));
-            $hasil .= '<div><strong>'.$title.'</strong> - <a href="link.php?o='.$str.'">download</a></div>';
+	    $link = 'link.php?o='.$str;
+            $hasil .= '<div><strong>'.$title.'</strong> - <a href="'.$link.'">download</a></div>';
             $x++;
         }}
 
         if($found != true) {
             $hasil = "not found";
         }
+
+	else
+	{
+	  // generate playList
+	  $playList = new LemonPlayList($data);
+	}
 
 } ?>
 
@@ -104,6 +120,13 @@ if(!empty($keyword)) {
 	height: 30px;
 }
 </style>
+
+<?php
+  // generate playlist header
+  if (isset($playList))
+    echo $playList->generateHeader();
+?>
+
 </head>
 
 <body>
@@ -123,9 +146,25 @@ if(!empty($keyword)) {
 
     <?php if(!empty($keyword)) {
     ?>
+
     <div id="content">
 	<h1><?php echo $keyword;?></h1>
-	<?php echo $hasil; ?>
+
+	<p>
+	(To download: right click on the <i>(mp3)</i> and click save link as.)<br />
+	Since we don't host the file, if mp3/song doesn't work, just try the next one ;)
+	</p>
+
+      <?php
+      // generate playList body
+	if (isset($playList))
+	  echo $playList->generateBody();
+      ?>
+
+	<?php // disabled.
+	      // echo $hasil; 
+	?>
+
     </div>
     <?php } ?>
 
