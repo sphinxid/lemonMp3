@@ -16,4 +16,4 @@ donation
 - XPM: ASzDpuxkHJdfcvG4KaTHXxLNRGN83Fs5Wa
 
 Firman Gautama
-firman@kodelatte.com
+<firman@kodelatte.com>
