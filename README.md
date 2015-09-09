@@ -14,3 +14,6 @@ demo: http://goo.gl/uVGecW
 donation
 - LTC: LZbCPHFSLfp7yrtPtLeYbjnNy9cyoHZwmi
 - XPM: ASzDpuxkHJdfcvG4KaTHXxLNRGN83Fs5Wa
+
+Firman Gautama
+firman@kodelatte.com
